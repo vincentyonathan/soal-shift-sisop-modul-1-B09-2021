@@ -20,7 +20,7 @@ awk '
     END{
         printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
     }
-' Laporan-TokoShiSop.tsv >> hasil.txt
+' Laporan-TokoShiSop.tsv > hasil.txt
 
 #2b
 awk '
