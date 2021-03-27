@@ -1,0 +1,5 @@
+#zipping
+* 7 * * 1-5  bash soal3d.sh
+
+#unzipping
+* 18 * * 1-5 unzip -P 'date "+\%m\%d\%Y"' soal3/Koleksi.zip && rm -rf Koleksi.zip

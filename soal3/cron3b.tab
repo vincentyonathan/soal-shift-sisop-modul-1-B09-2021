@@ -1,0 +1,2 @@
+#Crontab untuk 3b dapat dicek di crontab.guru
+00 20 1/7,2/4 * * bash soal3b.sh
