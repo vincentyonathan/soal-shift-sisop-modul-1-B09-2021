@@ -1,5 +1,23 @@
 #!/bin/bash
 
+#1.a)
+errorinfo=$(grep -o "[INFO|ERROR].*" syslog.log)
+#echo "$errorinfo"
+
+#1.b) 
+errorcount=$(grep -o "ERROR.*" syslog.log |sort -nr | cut -d "(" -f1 | uniq -c)
+#uniq -c [count]
+echo "$errorcount"
+
+#1.c)
+#Cara yg akan sama digunakan dengan 1.e
+uinforegex=$(grep "INFO.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1| sort -nr | uniq -c)
+uerroregex=$(grep "ERROR.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1 | sort -nr | uniq -c)
+#echo "Ini untuk info"
+#echo "$uinforegex"
+#echo "Ini untuk Error"
+#echo "$uerroregex"
+
 #1.d)
 #Filter semua isi dari pesan log untuk nantinya dihitung
 fil_deny="$(grep 'Permission' syslog.log | wc -l)"
