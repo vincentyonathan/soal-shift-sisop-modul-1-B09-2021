@@ -1,2 +1,0 @@
-* 7 * * 1-5  bash Home/soal3/soal3d.sh
-* 18 * * 1-5 unzip -P 'date "+\%m\%d\%Y"' Home/soal3/Koleksi.zip && rm Home/soal3/Koleksi.zip
