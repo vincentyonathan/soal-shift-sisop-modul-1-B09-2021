@@ -1,6 +1,16 @@
 #!/bin/sh
 echo "" > Foto.log
-kitten=0
+today=$(date "+%d")
+let hasil=$today%2
+
+#mengetahui tanggal dan menentukan kucing atau kelinci
+if [ $hasil -eq 0 ]
+then
+        kitten=1
+else
+        kitten=0
+fi
+
 for ((i = 1; i < 24 ; i++)); do
     if [[ $kitten == 1 ]]; then
         wget https://loremflickr.com/320/240/kitten -O $( printf "Koleksi_%02d" $i) -a Foto.log
