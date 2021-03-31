@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3
 echo "" > Foto.log
 for i in {1..23}; do
     wget https://loremflickr.com/320/240/kitten -O $( printf "Koleksi_%02d" $i) -a Foto.log
