@@ -1,5 +1,5 @@
 #zipping
-* 7 * * 1-5  /bin/bash /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/soal3d.sh
+00 7 * * 1-5  /bin/bash /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/soal3d.sh
 
 #unzipping
-1 18 * * 1-5  cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3 && unzip -P $(date +%m%d%Y) /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip && rm -rf /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip
+00 18 * * 1-5  cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3 && unzip -P $(date +%m%d%Y) /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip && rm -rf /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip
