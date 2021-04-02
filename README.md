@@ -153,23 +153,23 @@ done >> user_statistic.csv
 
 ### Soal 2
 *Praktikan* mampu mencari data dari laporan *Laporan-TokoShiSop.tsv* yang akan diselesaikan terdapat dalam soal nomor 2a, 2b, 2c, dan 2d. Kemudian untuk pengerjaan script soal dikerjakan di file yang diberi nama dengan **soal2_generate_laporan_ihir_shisop.sh** dan hasil kesimpulan akan disimpan kedalam script yang bernama **hasil.txt**.
-```
+```bash
 export LC_ALL=C
 ```
 Menggunakan `LC_ALL=C` untuk membaca file agar data yang ada di *Laporan-TokoShiSop.tsv* lebih akurat.
-```
+```bash
 awk ' '
 ```
 Menggunakan `awk ''` untuk menyelesaikan soal sehingga harus mengimport `awk ''` terlebih dahulu di awal pengerjaan **shell script**
-```
+```bash
 FS="\t"
 ```
 Penggunaan pada `FS="\t"` untuk membaca setiap kolom yang ada di file *Laporan-TokoShiSop.tsv* dipisahkan oleh *tab*.
-```
+```bash
 BEGIN
 ```
 `BEGIN` adalah sebuah blok yang hanya akan dieksekusi satu kali, yaitu sebelum input dari program dibaca.
-```
+```bash
 END
 ```
 `END` adalah sebuah blok yang hanya dieksekusi satu kali, yaitu hanya setelah semua input dari program selesai dibaca.
@@ -194,7 +194,7 @@ Untuk menghitung **Profit Percentage** sesuai dengan pendefinisian rumus awal, m
 
 - Mendapatkan nilai dari `Profit Percentage` terbesar
 ```bash
-if(profit_percentage>=maks){
+if (profit_percentage>=maks){
    maks=profit_percentage
    maksID=rowID
 }
@@ -221,13 +221,43 @@ Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai denga
 
 - Mendapatkan **Nama Customer** yang melakukan transaksi pada tahun **2017** dan di kota **Albuquerque**
 ```bash
-if(year~"2017" && city=="Albuquerque"){
+if (year~"2017" && city=="Albuquerque"){
    list[name]+=1
 }
 ```
+Pada if saat ini digunakan untuk pengecekan Customer yang melakukan transaksi pada tahun 2017 dan di kota Albuquerque. Pada `awk` akan melakukan pengecekan pada setiap baris di dalam file, dimana akan mencari data dari kolom ke **$2** yang mengandung string "2017" dan di kolom ke **$10** yang mengandung string "Albuquerque". Ketika dalam melakukan pengecekan disetiap barisnya dan mendapatkan tahun dan kota yang diinginkan maka nama customer akan disimpan ke dalam array name. Pencarian akan dilakukan sampai data telah semuanya di cek.&nbsp;
+
+```
+ printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")
+    for(data in list){
+    printf("%s\n", data)
+}
+```
+Melakukan iterasi untuk menampilkan semua nilai yang ada di array name atau **Nama Customer**.
 
 #### 2.c)
+*Praktikan* mampu mencari salah satu **Segment Customer** dan **Jumlah transaksinya yang paling sedikit** dimana setiap segmentnya terdapat : Home Office, Customer dan Corporate.&nbsp;
 
+#### Source Code :
+- Penginisialisasian terhadap setiap elemen kolom yang digunakan
+```bash
+segment=$8
+```
+Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
+
+- Menghitung banyaknyanya **Segment** yang muncul di *Laporan-TokoShiSop.tsv*
+```bash
+if (segment=="Consumer"){
+   hitung[segment]+=1
+}
+else if (segment=="Corporate"){
+   hitung[segment]+=1
+}
+else if (segment=="Home Office"){
+   hitung[segment]+=1
+}
+```
+Melakukan pengecekan pada kolom ke **$8** yang diinisialisasi dengan variabel *segment*. Lalu `awk` mengecek setiap baris di dalam file di setiap menemukan salah satu dari *segment* maka nama dan nilai dari segment akan dimasukkan kedalam array disetiap segmentnya.
 #### 2.d)
 
 ---
