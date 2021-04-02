@@ -182,7 +182,7 @@ END
  profit=$21
  sales=$18
 ```
-Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.ts*.&nbsp;
+Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
 
 - Menghitung `Profit Percentage`
 ```
@@ -197,7 +197,11 @@ if(profit_percentage>=maks){
    maksID=rowID
 }
 ```
-Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan `  nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal pe
+Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal perbandingan nilai `maks` akan bernilai 0. Lalu jika disetiap perbandingan nilai `Profit Percentage` lebih besar daripada maks, maka maks akan terupdate dengan nilai yang baru. Lalu gunakan `maksID=rowID` untuk menyimpan ID yang terbesar.&nbsp;
+
+```
+printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
+```
 #### 2.b)
 
 #### 2.c)
