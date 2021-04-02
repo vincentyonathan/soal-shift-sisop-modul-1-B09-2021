@@ -154,6 +154,8 @@ done >> user_statistic.csv
 - Kesulitan mencari penggunaan *regex* untuk memotong kalimat pada baris agar sesuai yang diinginkan. Namun akhirnya teratasi dengan penggunaan command `cut`.
 - Kesulitan mencari cara agar bisa melakukan grouping dan menghitung banyaknya, akhirnya teratasi dengan command `uniq -c`.
 
+---
+
 ### Soal 2
 #### 2.a)
 
@@ -163,6 +165,7 @@ done >> user_statistic.csv
 
 #### 2.d)
 
+---
 
 ### Soal 3
 
