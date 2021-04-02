@@ -149,6 +149,11 @@ done >> user_statistic.csv
 #### Output :
 ![1e](./screenshots/soal1e.JPG)
 
+### Kendala yang dialami
+- Melakukan revisi karena soal 1d dan e yang menggunakan algoritma brute force yang tidak diperbolehkan.
+- Kesulitan mencari penggunaan *regex* untuk memotong kalimat pada baris agar sesuai yang diinginkan. Namun akhirnya teratasi dengan penggunaan command `cut`.
+- Kesulitan mencari cara agar bisa melakukan grouping dan menghitung banyaknya, akhirnya teratasi dengan command `uniq -c`.
+
 ### Soal 2
 #### 2.a)
 
@@ -160,3 +165,8 @@ done >> user_statistic.csv
 
 
 ### Soal 3
+
+
+### Kendala
+- Crontab pada bagian 3e yang terkadang tidak mau dijalankan, pedahal cron sudah active ketika dicek status dari cron tersebut.
+![3ecron](./screenshots/crontab3e.JPG)
