@@ -7,9 +7,9 @@
 [Soal Shift Modul 1](https://docs.google.com/document/d/1T3Y4o2lt5JvLTHdgzA5vRBQ0QYempbC5z-jcDAjela0/edit)
 
 ### Daftar isi
-* [Jawaban Soal 1](https://github.com/vincentyonathan/soal-shift-sisop-modul-1-B09-2021/tree/main/soal1)
-* [Jawaban Soal 2](https://github.com/vincentyonathan/soal-shift-sisop-modul-1-B09-2021/tree/main/soal2)
-* [Jawaban Soal 3](https://github.com/vincentyonathan/soal-shift-sisop-modul-1-B09-2021/tree/main/soal3)
+* [Soal 1](#soal-1)
+* [Soal 2](#soal-2)
+* [Soal 3](#soal-3)
 
 
 ### Soal 1
@@ -43,7 +43,7 @@ ERROR ticket doesn't exist (xlg)
 #### 1.e)
 
 
-### Penjelasan nomor 2
+### Soal 2
 #### 2.a)
 
 #### 2.b)
@@ -51,3 +51,6 @@ ERROR ticket doesn't exist (xlg)
 #### 2.c)
 
 #### 2.d)
+
+
+### Soal 3
