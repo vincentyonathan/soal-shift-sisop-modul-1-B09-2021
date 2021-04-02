@@ -125,7 +125,7 @@ Menuliskan informasi pada poin **c** kedalam file user_statistic.csv dengan head
 
 #### Source Code :
 
-#### Output
+#### Output :
 
 ### Soal 2
 #### 2.a)
