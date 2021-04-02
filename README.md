@@ -149,6 +149,8 @@ done >> user_statistic.csv
 #### Output :
 ![1e](./screenshots/soal1e.JPG)
 
+---
+
 ### Soal 2
 *Praktikan* mampu mencari data dari laporan *Laporan-TokoShiSop.tsv* yang akan diselesaikan terdapat dalam soal nomor 2a, 2b, 2c, dan 2d. Kemudian untuk pengerjaan script soal dikerjakan di file yang diberi nama dengan **soal2_generate_laporan_ihir_shisop.sh** dan hasil kesimpulan akan disimpan kedalam script yang bernama **hasil.txt**.
 ```
@@ -208,5 +210,6 @@ printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan per
 
 #### 2.d)
 
+---
 
 ### Soal 3
