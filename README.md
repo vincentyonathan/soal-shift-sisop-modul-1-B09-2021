@@ -19,8 +19,8 @@
 #### 1. a)
 *Praktikan* diminta untuk mengumpulkan informasi berupa: jenis log (`ERROR`/`INFO`), pesan log, dan username pada file `syslog.log` untuk setiap baris *log*nya.&nbsp;
 
-Source Code :
-```
+#### Source Code :
+```bash
 #!/bin/bash
 
 #1.a)
@@ -29,7 +29,7 @@ echo "$errorinfo"
 ```
 - Pengerjaan menggunakan regex `[INFO|ERROR].*` yang mengambil baris dari `syslog.log` dengan kata-kata tersebut untuk dimunculkan di output.  
 
-Contoh Output :
+#### Contoh Output :
 ```
 INFO closed ticket [#1754] (noel)
 ERROR ticket doesn't exist (xlg)
@@ -37,14 +37,14 @@ ERROR ticket doesn't exist (xlg)
 
 #### 1. b)
 *Praktikan* diminta menampilkan semua pesan error yang muncul beserta jumlah kemunculannya dari `syslog.log`&nbsp;
-Source Code :
-```
+#### Source Code :
+```bash
 errorcount=$(grep -o "ERROR.*" syslog.log |sort -nr | cut -d "(" -f1 | uniq -c)
 echo $errorcount
 ```
 - Melakukan `grep -o` pada `syslog.log` untuk mem*filter* dan mencetak baris eksplisit yang sesuai dengan regex yang diminta/tidak mencetak seluruh baris.
 - Menggunakan *regex* `ERROR.*` yang mengambil baris berisikan `(ERROR)` pada kata depannya.
-- Melakukan sorting atau pengurutan menggunakan command `sort` yang mengurutkan seluruh baris dengan konten kata yang sama, hasilnya akan seperti berikut
+- Melakukan sorting atau pengurutan menggunakan command `| sort` yang mengurutkan seluruh baris dengan konten kata yang sama, hasilnya akan seperti berikut
 ```
 ERROR Tried to add information to closed ticket (sri)
 ERROR Tried to add information to closed ticket (oren)
@@ -53,9 +53,9 @@ ERROR Tried to add information to closed ticket (nonummy)
 ERROR Tried to add information to closed ticket (noel)
 ... dst
 ```
-- Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f1` yang berarti mengambil semua sampai dengan sebelum `(nama-pengguna)`
-- Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
-Output :
+- Menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f1` yang berarti mengambil semua sampai dengan sebelum `(nama-pengguna)`
+- Terakhir, menggunakan command `| uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
+#### Output :
 ```
 12 ERROR Tried to add information to closed ticket 
 15 ERROR Timeout while retrieving information 
@@ -68,8 +68,8 @@ Output :
 #### 1. c)
 *Praktikan* diminta untuk  menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap *user*-nya.&nbsp;
 
-Source Code :
-```
+#### Source Code :
+```bash
 uinforegex=$(grep "INFO.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1| sort -nr | uniq -c)
 uerroregex=$(grep "ERROR.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1 | sort -nr | uniq -c)
 echo "$uinforegex"
@@ -77,13 +77,13 @@ echo "$uerroregex"
 ```
 - Menggunakan command `grep` untuk mengambil baris dari file `syslog.log`
 - Melakukan filter yaitu dengan menggunakan *regex* `INFO.*` dan `ERROR.*` yang bertujuan untuk mengambil baris dengan kata `(INFO)` dan `(ERROR)`
-- Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f2` yang berarti memotong sampai dengan sebelum `(nama-pengguna)` 
-- Sekali lagi menggunakan command `cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)` agar yang tercetak hanya nama pengguna
+- Menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f2` yang berarti memotong sampai dengan sebelum `(nama-pengguna)` 
+- Sekali lagi menggunakan command `| cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)` agar yang tercetak hanya nama pengguna
 - Kemudian, melakukan `sort` untuk mengurutkan tiap baris dengan konten yang sama
-- Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
+- Terakhir, menggunakan command `| uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
 
-Output :
-```
+#### Output :
+```bash
 untuk info
       2 sri
       2 rr.robinson
@@ -99,6 +99,26 @@ untuk info
 ```
 
 #### 1. d)
+Menuliskan informasi pada poin b kedalam file error_message.csv. Header adalah Error,Count dengan daftar pesan error dan jumlah kemunculannya diurutkan dari yang terbanyak.&nbsp;
+
+#### Source Code :
+```bash
+grep -o "ERROR.*" syslog.log | sed 's/\<ERROR\>//g' | cut -d "(" -f1 | sort | uniq -c |
+while read count msg
+do
+        echo $msg,$count
+done | sort -nr -t, -k2 | sed '1i\Error,Count' > error_message.csv
+```
+- Menggunakan cara yang sama dengan poin b yaitu melakukan `grep -o` pada `syslog.log` dan menggunakan *regex* `ERROR.*` untuk memfilter isinya.
+- Kemudian pada soal ini ditambahkan command `| sed 's/\<ERROR\>//g'` untuk menghilangkan kata ERROR dan mengambil sisa dari baris tersebut. 
+- Setelah itu, melakukan hal yang sama yaitu menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f1` dan command `uniq -c`
+- Kemudian, pada poin ini, program akan melakukan iterasi dengan command `| while read count msg` yang menyimpan nilai jumlah kemunculan pesan info dan kalimatnya ke dalam variabel 'count' dan 'msg'
+- Melakukan echo dengan posisi `$msg,$count` agar disesuaikan dengan permintaan soal
+- Berikutnya, melakukan sorting sekali lagi menggunakan command `| sort -nr -t, -k2` yaitu melakukan sort secara Descending dan memberitahu bahwa yang di sort adalah kolom kedua.
+- Terakhir, untuk memberikan header menggunakan command `| sed '1i\Error,Count' > error_message.csv` dan mengeluarkan outputnya pada file error_message.csv dan menimpa apapun yang ada disana dengan command `> error_message.csv`.&nbsp;
+
+#### Output :
+![1d](./screenshots/soal1d.JPG)
 
 #### 1. e)
 
