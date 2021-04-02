@@ -67,6 +67,7 @@ Output :
 
 #### 1. c)
 *Praktikan* diminta untuk  menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap *user*-nya.&nbsp;
+
 Source Code :
 ```
 uinforegex=$(grep "INFO.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1| sort -nr | uniq -c)
@@ -80,6 +81,7 @@ echo "$uerroregex"
 - Sekali lagi menggunakan command `cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)` agar yang tercetak hanya nama pengguna
 - Kemudian, melakukan `sort` untuk mengurutkan tiap baris dengan konten yang sama
 - Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
+
 Output :
 ```
 untuk info
