@@ -228,7 +228,7 @@ if (year~"2017" && city=="Albuquerque"){
 ```
 Pada if saat ini digunakan untuk pengecekan Customer yang melakukan transaksi pada tahun 2017 dan di kota Albuquerque. Pada `awk` akan melakukan pengecekan pada setiap baris di dalam file, dimana akan mencari data dari kolom ke **$2** yang mengandung string "2017" dan di kolom ke **$10** yang mengandung string "Albuquerque". Ketika dalam melakukan pengecekan disetiap barisnya dan mendapatkan tahun dan kota yang diinginkan maka nama customer akan disimpan ke dalam array name. Pencarian akan dilakukan sampai data telah semuanya di cek.&nbsp;
 
-```
+```bash
  printf ("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")
     for (data in list){
     printf ("%s\n", data)
