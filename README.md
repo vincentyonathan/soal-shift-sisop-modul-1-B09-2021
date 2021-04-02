@@ -34,6 +34,7 @@ echo "$errorinfo"
 INFO closed ticket [#1754] (noel)
 ERROR ticket doesn't exist (xlg)
 ```
+![1a](./screenshots/soal1a.JPG)
 
 #### 1. b)
 *Praktikan* diminta menampilkan semua pesan error yang muncul beserta jumlah kemunculannya dari `syslog.log`&nbsp;
@@ -64,6 +65,7 @@ ERROR Tried to add information to closed ticket (noel)
 10 ERROR Permission denied while closing ticket 
 13 ERROR Connection to DB failed 
 ```
+![1b](./screenshots/soal1b.JPG)
 
 #### 1. c)
 *Praktikan* diminta untuk  menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap *user*-nya.&nbsp;
@@ -97,6 +99,7 @@ untuk info
       7 oren
 ..dst
 ```
+![1c](./screenshots/soal1c.JPG)
 
 #### 1. d)
 Menuliskan informasi pada poin **b** kedalam file error_message.csv. Header adalah Error,Count dengan daftar pesan error dan jumlah kemunculannya diurutkan dari yang terbanyak.&nbsp;
