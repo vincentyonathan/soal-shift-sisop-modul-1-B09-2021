@@ -290,7 +290,7 @@ Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai denga
 
 - Menghitung **Total Keuntungan** dari setiap wilayah
 ```bash
-if(wilayah=="Central"){
+if (wilayah=="Central"){
    jumlah[wilayah]+=profit
 }
 else if (wilayah=="East"){
@@ -316,15 +316,16 @@ for (x in jumlah){
 }
 ```
 Iterasi pada array untuk mencari jumlah *profit* yang paling sedikit. Dimana jumlah *profit* disetiap *wilayah* akan dibandingkan untuk pertama kali yaitu dengan *minimal_profit=99999* supaya nilai hitung jumlah *profit* selalu lebih kecil daripada *minimal_profit=99999*. Setelah dibandingkan dan jumlah *profit*nya lebih kecil maka nilai minimal_profitnya akan terupdate menjadi *profit* lebih kecil dan nama *wilayah* mengikuti nama *wilayah* yang sedang dibandingkan.&nbsp;
-```
+```bash
  printf ("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.2f.\n", nama_wilayah, minimal_profit)
 ```
 Mencetak nilai dari *nama_wilayah* dan *minimal_profit* sesuai dengan format di atas.
 
 #### 2.e)
+Hasil dari kesimpulan dari data yang dicari di dalam **hasil.txt**.&nbsp;
 
-
-
+#### Output :
+![2](./screenshots/soal2.JPG)
 
 ---
 
