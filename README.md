@@ -149,27 +149,60 @@ done >> user_statistic.csv
 #### Output :
 ![1e](./screenshots/soal1e.JPG)
 
-### Kendala :
-- Melakukan revisi karena soal 1d dan e yang menggunakan algoritma brute force yang tidak diperbolehkan.
-- Kesulitan mencari penggunaan *regex* untuk memotong kalimat pada baris agar sesuai yang diinginkan. Namun akhirnya teratasi dengan penggunaan command `cut`.
-- Kesulitan mencari cara agar bisa melakukan grouping dan menghitung banyaknya, akhirnya teratasi dengan command `uniq -c`.
-
----
-
 ### Soal 2
-#### 2.a)
+*Praktikan* mampu mencari data dari laporan *Laporan-TokoShiSop.tsv* yang akan diselesaikan terdapat dalam soal nomor 2a, 2b, 2c, dan 2d. Kemudian untuk pengerjaan script soal dikerjakan di file yang diberi nama dengan **soal2_generate_laporan_ihir_shisop.sh** dan hasil kesimpulan akan disimpan kedalam script yang bernama **hasil.txt**.
+```
+export LC_ALL=C
+```
+Menggunakan `LC_ALL=C` untuk membaca file agar data yang ada di *Laporan-TokoShiSop.tsv* lebih akurat.
+```
+awk ' '
+```
+Menggunakan `awk ''` untuk menyelesaikan soal sehingga harus mengimport `awk ''` terlebih dahulu di awal pengerjaan **shell script**
+```
+FS="\t"
+```
+Penggunaan pada `FS="\t"` untuk membaca setiap kolom yang ada di file *Laporan-TokoShiSop.tsv* dipisahkan oleh *tab*.
+```
+BEGIN
+```
+`BEGIN` adalah sebuah blok yang hanya akan dieksekusi satu kali, yaitu sebelum input dari program dibaca.
+```
+END
+```
+`END` adalah sebuah blok yang hanya dieksekusi satu kali, yaitu hanya setelah semua input dari program selesai dibaca.
 
+#### 2.a)
+*Praktikan* mampu mencari **Row ID** dan **Profit Percentage terbesar**. Pencarian *profit percentage terbesar* didefinisikan dengan `Profit Percentage = (Profit / Cost Price) x 100` yang dimana Cost Price didapatkan dari pengurangan Sales dengan Profit. **(Quantity diabaikan)**.&nbsp;
+
+#### Source Code :
+- Penginisialisasian terhadap setiap elemen kolom yang digunakan
+```
+ rowID=$1
+ profit=$21
+ sales=$18
+```
+Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.ts*.&nbsp;
+
+- Menghitung `Profit Percentage`
+```
+profit_percentage=(profit/(sales-profit))*100
+```
+Untuk menghitung **Profit Percentage** sesuai dengan pendefinisian rumus awal, maka kita harus mendapatkan nilai profit yang ada di kolom data urutan **$21** dan sales di kolom urutan **$18**. Lalu untuk pencarian nilai **Cost Price** adalah dengan pengurangan Sales dikurangkan dengan profit. Kemudian hasil pembagian dari **Profit** dan **Cost Price** dikalikan dengan 100.&nbsp;
+
+- Mendapatkan nilai dari `Profit Percentage` terbesar
+```
+if(profit_percentage>=maks){
+   maks=profit_percentage
+   maksID=rowID
+}
+```
+Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan `  nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal pe
 #### 2.b)
 
 #### 2.c)
 
 #### 2.d)
 
----
 
 ### Soal 3
-
-
-### Kendala
-- Crontab pada bagian 3e yang terkadang tidak mau dijalankan, pedahal cron sudah active ketika dicek status dari cron tersebut.
-![3ecron](./screenshots/crontab3e.JPG)
