@@ -330,3 +330,164 @@ Hasil dari kesimpulan dari data yang dicari di dalam **hasil.txt**.&nbsp;
 ---
 
 ### Soal 3
+#### 3.a)
+
+*Praktikan* diminta untuk membuat script untuk **mengunduh** 23 gambar dari *"https://loremflickr.com/320/240/kitten"* serta **menyimpan** log-nya ke file `Foto.log`. Agar file yang di download tidak terunduh lebih dari sekali, *Praktikan* juga harus menghapus gambar yang sama kemudian **menyimpan** gambar yang telah disimpan dengan nama `Koleksi_XX` dengan nomor yang berurutan **tanpa ada nomor yang hilang**.
+
+#### Source Code :
+```bash
+#!/bin/sh
+
+echo  "" > Foto.log
+for  i  in {1..23}; do
+wget https://loremflickr.com/320/240/kitten -O $( printf "Koleksi_%02d" $i) -a Foto.log
+done
+
+for  ((i =  1 ; i <  24 ; i++)); do
+for  ((j = i +  1 ; j <  24 ; j++)); do
+if diff $( printf "Koleksi_%02d" $i)  $( printf "Koleksi_%02d" $j) &> /dev/null; then
+rm $( printf "Koleksi_%02d" $j)
+fi
+done
+done
+
+  
+
+for  i  in {1..23}; do
+if [ ! -f $( printf "Koleksi_%02d" $i ) ]; then
+for  ((j =  23; i < j; j--)); do
+if [ -f $( printf "Koleksi_%02d" $j ) ]; then
+mv $( printf "Koleksi_%02d" $j )  $( printf "Koleksi_%02d" $i )
+break
+fi
+done
+fi
+done
+#!
+```
+- Pertama file didownload menggunakan `wget` lalu namanya disesuaikan dengan `-o` dan log dari file dimasukkan ke `Foto.log` dengan `-a`
+-  Kedua file di cek kesamaan nya dengan menggunakan variabel `I` dan `J`. **Jika file yang dicek merupakan file yang sama**, file akan di remove `-rm`
+- Ketiga file dicek urutan nya nya dengan menggunakan variabel `I` dan `J`.  **jika ada file yang tidak ada**, script akan mengecek dari belakang koleksi yang ada dan mengganti namanya ke file yang tidak ada tersebut untuk melengkapi keterurutan menggunakan `-mv`
+
+#### Contoh Output
+![3a](./screenshots/soal3a.JPG)
+
+#### 3.b)
+*Praktikan* diminta untuk membuat script untuk **mengunduh gambar setiap hari pada jam 8 malam** untuk tanggal-tanggal tertentu setiap bulan, yaitu dari **tanggal 1 setiap 7 hari sekali** serta dari **tanggal 2 setiap 4 hari sekali**. Agar lebih rapi gambar yang telah diunduh beserta **log-nya, dipindahkan ke folder** dengan nama **tanggal unduhannya** dengan **format** `DD-MM-YYYY`.
+
+#### Source Code :
+```bash
+#!/bin/bash
+cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3
+echo  "" > Foto.log
+for  i  in {1..23}; do
+wget https://loremflickr.com/320/240/kitten -O $( printf "Koleksi_%02d" $i) -a Foto.log
+done
+
+for  ((i =  1 ; i <  24 ; i++)); do
+for  ((j = i +  1 ; j <  24 ; j++)); do
+if diff $( printf "Koleksi_%02d" $i)  $( printf "Koleksi_%02d" $j) &> /dev/null; then
+rm $( printf "Koleksi_%02d" $j)
+fi
+done
+done
+
+for  i  in {1..23}; do
+if [ ! -f $( printf "Koleksi_%02d" $i ) ]; then
+for  ((j =  23; i < j; j--)); do
+if [ -f $( printf "Koleksi_%02d" $j ) ]; then
+mv $( printf "Koleksi_%02d" $j )  $( printf "Koleksi_%02d" $i )
+break
+fi
+done
+fi
+done
+
+target="$(date +%d)-$(date +%m)-$(date +%Y)"
+mkdir $target
+mv Koleksi_* $target
+mv Foto.log $target
+```
+- Tanggal ditetapkan dalam **target**
+- Foto yang telah dibuat dimasukkan kedalam folder setelah folder dibuat `mkdir $target`
+-  `Koleksi_XX` dan `Foto.log` dimasukkan ke dalam folder `$target`
+
+#### Contoh Output
+![3b](./screenshots/soal3b(isi).JPG)
+
+#### Crontab
+```
+00 20 1-31/7 * * /bin/bash /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/soal3b.sh
+00 20 2-31/4 * * /bin/bash /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/soal3b.sh
+```
+- Dengan adanya cron diatas, proses output akan diulang setiap 7 hari setelah tanggal 1, dan setiap 4 hari setelah tanggal 2
+  
+  #### Contoh Output
+![3b](./screenshots/soal3b.JPG)
+
+#### 3.c)
+*Praktikan* diminta untuk membuat script untuk menambahkan **kelinci** kedalam list yang **diunduh** lalu foto yang diunduh berubah secara **bergantian**. untuk membedakan folder, folder diberi nama `Kucing_XX` atau `Kelinci_XX`.
+#### Source Code
+```bash
+#!/bin/sh
+echo  "" > Foto.log
+today=$(date "+%d")
+let hasil=$today%2
+#mengetahui tanggal dan menentukan kucing atau kelinci
+
+if [ $hasil -eq 0 ]
+then
+kitten=1
+else
+kitten=0
+fi
+  
+for  ((i =  1; i <  24 ; i++)); do
+if [[ $kitten == 1 ]]; then
+wget https://loremflickr.com/320/240/kitten -O $( printf "Koleksi_%02d" $i) -a Foto.log
+fi
+if [[ $kitten == 0 ]]; then
+wget https://loremflickr.com/320/240/bunny -O $( printf "Koleksi_%02d" $i) -a Foto.log
+fi
+done
+  
+for  ((i =  1 ; i <  24 ; i++)); do
+for  ((j = i +  1 ; j <  24 ; j++)); do
+if diff $( printf "Koleksi_%02d" $i)  $( printf "Koleksi_%02d" $j) &> /dev/null; then
+# diff evaluated true if file matches
+rm $( printf "Koleksi_%02d" $j)
+fi
+done
+done
+  
+for  i  in {1..23}; do
+if [ ! -f $( printf "Koleksi_%02d" $i ) ]; then
+for  ((j =  23; i < j; j--)); do
+if [ -f $( printf "Koleksi_%02d" $j ) ]; then
+mv $( printf "Koleksi_%02d" $j )  $( printf "Koleksi_%02d" $i )
+break
+fi
+done
+fi
+done   
+
+if [[ $kitten == 1 ]]; then
+target="Kucing_$(date +%d)-$(date +%m)-$(date +%Y)"
+fi
+if [[ $kitten == 0 ]]; then
+target="Kelinci_$(date +%d)-$(date +%m)-$(date +%Y)"
+fi
+
+mkdir $target
+mv Koleksi_* $target
+mv Foto.log $target
+```
+- Tanggal yang dimasukkan kedalam `today`
+- `today` diproses dengan mod 2, jika hasilnya 0 maka `Kitten` dijadikan **true**. Jika hasil dari `today` tidak 0, maka `kitten` menjadi **False**
+- Proses dari pengambilan gambar sama seperti 3a, hanya link dan proses pemilihan link menyesuaikan hasil dari `today`.
+
+#### 3.d)
+
+  
+
+#### 3.e)
