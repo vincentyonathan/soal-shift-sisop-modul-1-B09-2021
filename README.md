@@ -53,8 +53,8 @@ ERROR Tried to add information to closed ticket (nonummy)
 ERROR Tried to add information to closed ticket (noel)
 ... dst
 ```
-- Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f1` yang berarti sampai dengan sebelum `(nama-pengguna)`
-- Terakhir, menggunakan command `uniq -c` yang berlaku seperti GroupBy dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
+- Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f1` yang berarti mengambil semua sampai dengan sebelum `(nama-pengguna)`
+- Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
 Output :
 ```
 12 ERROR Tried to add information to closed ticket 
@@ -66,6 +66,35 @@ Output :
 ```
 
 #### 1. c)
+*Praktikan* diminta untuk  menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap *user*-nya.&nbsp;
+Source Code :
+```
+uinforegex=$(grep "INFO.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1| sort -nr | uniq -c)
+uerroregex=$(grep "ERROR.*" syslog.log | cut -d "(" -f2 | cut -d ")" -f1 | sort -nr | uniq -c)
+echo "$uinforegex"
+echo "$uerroregex"
+```
+- Menggunakan command `grep` untuk mengambil baris dari file `syslog.log`
+- Melakukan filter yaitu dengan menggunakan *regex* `INFO.*` dan `ERROR.*` yang bertujuan untuk mengambil baris dengan kata `(INFO)` dan `(ERROR)`
+- Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f2` yang berarti memotong sampai dengan sebelum `(nama-pengguna)` 
+- Sekali lagi menggunakan command `cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)`
+- Kemudian, melakukan `sort` untuk mengurutkan tiap baris dengan konten yang sama
+- Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
+Output :
+```
+untuk info
+      2 sri
+      2 rr.robinson
+      2 oren
+      2 nonummy
+ .. dst
+ untuk error
+      4 xlg
+      2 sri
+      1 rr.robinson
+      7 oren
+..dst
+```
 
 #### 1. d)
 
