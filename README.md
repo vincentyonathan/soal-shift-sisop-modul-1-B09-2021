@@ -199,12 +199,32 @@ if(profit_percentage>=maks){
    maksID=rowID
 }
 ```
-Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal perbandingan nilai `maks` akan bernilai 0. Lalu jika disetiap perbandingan nilai `Profit Percentage` lebih besar daripada maks, maka maks akan terupdate dengan nilai yang baru. Lalu gunakan `maksID=rowID` untuk menyimpan ID yang terbesar.&nbsp;
+Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal perbandingan nilainya akan bernilai 0. Lalu jika disetiap perbandingan nilai `Profit Percentage` lebih besar daripada maks, maka maks akan terupdate dengan nilai yang baru. Lalu gunakan `maksID=rowID` untuk menyimpan ID yang terbesar.&nbsp;
 
 ```
 printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
 ```
+Mencetak nilai dari *maksID* dan *maks* sesuai dengan format di atas.
+
+
 #### 2.b)
+*Praktikan* mampu mencari daftar **Nama Customer** yang bertransaksi pada tahun **2017** dan di kota **Albuquerque**.&nbsp;
+
+#### Source Code :
+- Penginisialisasian terhadap setiap elemen kolom yang digunakan
+```
+year=$2
+city=$10
+name=$7
+```
+Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
+
+- Mendapatkan **Nama Customer** yang melakukan transaksi pada tahun **2017** dan di kota **Albuquerque**
+```
+if(year~"2017" && city=="Albuquerque"){
+   list[name]+=1
+}
+```
 
 #### 2.c)
 
