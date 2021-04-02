@@ -272,7 +272,7 @@ Melakukan pengecekan pada kolom ke **$8** yang diinisialisasi dengan variabel *s
  }
 ```
 Iterasi pada array untuk mencari jumlah yang paling sedikit. Dimana jumlah *segment* akan dibandingkan untuk pertama kali yaitu dengan *transaksi=99999* supaya nilai hitung *segment* selalu lebih kecil daripada *transaksi=99999*. Setelah dibandingkan dan jumlahnya lebih kecil maka nilai transaksi akan terupdate menjadi nilai lebih kecil dan nama *segment* mengikuti nama *segment* yang sedang dibandingkan.&nbsp;
-```
+```bash
 printf ("\n\nTipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", nama_segment, transaksi)
 ```
 Mencetak nilai dari *nama_segment* dan *transaksi* sesuai dengan format di atas.
