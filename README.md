@@ -99,7 +99,7 @@ untuk info
 ```
 
 #### 1. d)
-Menuliskan informasi pada poin b kedalam file error_message.csv. Header adalah Error,Count dengan daftar pesan error dan jumlah kemunculannya diurutkan dari yang terbanyak.&nbsp;
+Menuliskan informasi pada poin **b** kedalam file error_message.csv. Header adalah Error,Count dengan daftar pesan error dan jumlah kemunculannya diurutkan dari yang terbanyak.&nbsp;
 
 #### Source Code :
 ```bash
@@ -114,14 +114,18 @@ done | sort -nr -t, -k2 | sed '1i\Error,Count' > error_message.csv
 - Setelah itu, melakukan hal yang sama yaitu menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f1` dan command `uniq -c`
 - Kemudian, pada poin ini, program akan melakukan iterasi dengan command `| while read count msg` yang menyimpan nilai jumlah kemunculan pesan info dan kalimatnya ke dalam variabel 'count' dan 'msg'
 - Melakukan echo dengan posisi `$msg,$count` agar disesuaikan dengan permintaan soal
-- Berikutnya, melakukan sorting sekali lagi menggunakan command `| sort -nr -t, -k2` yaitu melakukan sort secara Descending dan memberitahu bahwa yang di sort adalah kolom kedua.
+- Berikutnya, melakukan sorting sekali lagi menggunakan command `| sort -nr -t, -k2` yaitu melakukan sort secara *descending* dan memberitahu bahwa yang di sort adalah kolom kedua.
 - Terakhir, untuk memberikan header menggunakan command `| sed '1i\Error,Count' > error_message.csv` dan mengeluarkan outputnya pada file error_message.csv dan menimpa apapun yang ada disana dengan command `> error_message.csv`.&nbsp;
 
 #### Output :
 ![1d](./screenshots/soal1d.JPG)
 
 #### 1. e)
+Menuliskan informasi pada poin **c** kedalam file user_statistic.csv dengan header 'Username, INFO, ERROR' diurutkan berdasarkan username secara *ascending*.&nbsp;
 
+#### Source Code :
+
+#### Output
 
 ### Soal 2
 #### 2.a)
