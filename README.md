@@ -149,7 +149,7 @@ done >> user_statistic.csv
 #### Output :
 ![1e](./screenshots/soal1e.JPG)
 
-### Kendala
+### Kendala :
 - Melakukan revisi karena soal 1d dan e yang menggunakan algoritma brute force yang tidak diperbolehkan.
 - Kesulitan mencari penggunaan *regex* untuk memotong kalimat pada baris agar sesuai yang diinginkan. Namun akhirnya teratasi dengan penggunaan command `cut`.
 - Kesulitan mencari cara agar bisa melakukan grouping dan menghitung banyaknya, akhirnya teratasi dengan command `uniq -c`.
