@@ -174,6 +174,7 @@ END
 ```
 `END` adalah sebuah blok yang hanya dieksekusi satu kali, yaitu hanya setelah semua input dari program selesai dibaca.
 
+
 #### 2.a)
 *Praktikan* mampu mencari **Row ID** dan **Profit Percentage terbesar**. Pencarian *profit percentage terbesar* didefinisikan dengan `Profit Percentage = (Profit / Cost Price) x 100` yang dimana Cost Price didapatkan dari pengurangan Sales dengan Profit. **(Quantity diabaikan)**.&nbsp;
 
@@ -194,7 +195,7 @@ Untuk menghitung **Profit Percentage** sesuai dengan pendefinisian rumus awal, m
 
 - Mendapatkan nilai dari `Profit Percentage` terbesar
 ```bash
-if (profit_percentage>=maks){
+if (profit_percentage >= maks){
    maks=profit_percentage
    maksID=rowID
 }
@@ -202,7 +203,7 @@ if (profit_percentage>=maks){
 Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal perbandingan nilainya akan bernilai 0. Lalu jika disetiap perbandingan nilai `Profit Percentage` lebih besar daripada maks, maka maks akan terupdate dengan nilai yang baru. Lalu gunakan `maksID=rowID` untuk menyimpan ID yang terbesar.&nbsp;
 
 ```bash
-printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
+printf ("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
 ```
 Mencetak nilai dari *maksID* dan *maks* sesuai dengan format di atas.
 
@@ -228,15 +229,16 @@ if (year~"2017" && city=="Albuquerque"){
 Pada if saat ini digunakan untuk pengecekan Customer yang melakukan transaksi pada tahun 2017 dan di kota Albuquerque. Pada `awk` akan melakukan pengecekan pada setiap baris di dalam file, dimana akan mencari data dari kolom ke **$2** yang mengandung string "2017" dan di kolom ke **$10** yang mengandung string "Albuquerque". Ketika dalam melakukan pengecekan disetiap barisnya dan mendapatkan tahun dan kota yang diinginkan maka nama customer akan disimpan ke dalam array name. Pencarian akan dilakukan sampai data telah semuanya di cek.&nbsp;
 
 ```
- printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")
-    for(data in list){
-    printf("%s\n", data)
+ printf ("Daftar nama customer di Albuquerque pada tahun 2017 antara lain:\n")
+    for (data in list){
+    printf ("%s\n", data)
 }
 ```
 Melakukan iterasi untuk menampilkan semua nilai yang ada di array name atau **Nama Customer**.
 
+
 #### 2.c)
-*Praktikan* mampu mencari salah satu **Segment Customer** dan **Jumlah transaksinya yang paling sedikit** dimana setiap segmentnya terdapat : Home Office, Customer dan Corporate.&nbsp;
+*Praktikan* mampu mencari salah satu **Segment** dan **Jumlah transaksinya yang paling sedikit** dimana setiap segmentnya terdapat : Home Office, Customer dan Corporate.&nbsp;
 
 #### Source Code :
 - Penginisialisasian terhadap setiap elemen kolom yang digunakan
@@ -257,8 +259,72 @@ else if (segment=="Home Office"){
    hitung[segment]+=1
 }
 ```
-Melakukan pengecekan pada kolom ke **$8** yang diinisialisasi dengan variabel *segment*. Lalu `awk` mengecek setiap baris di dalam file di setiap menemukan salah satu dari *segment* maka nama dan nilai dari segment akan dimasukkan kedalam array disetiap segmentnya.
+Melakukan pengecekan pada kolom ke **$8** yang diinisialisasi dengan variabel *segment*. Lalu `awk` mengecek setiap baris di dalam file di setiap menemukan salah satu dari *segment* maka nama dan nilai dari segment akan dimasukkan kedalam array disetiap segmentnya. Perhitungan akan dilakukan sampai setiap *segment* telah di cek dan dijumlahkan.&nbsp;
+
+- Mencari **segment** dan **Jumlah transaksi yang paling sedikit**
+```bash
+ transaksi=99999
+ for (n in hitung){
+   if (hitung[n]<transaksi){
+       transaksi=hitung[n]
+       nama_segment=n
+   }
+ }
+```
+Iterasi pada array untuk mencari jumlah yang paling sedikit. Dimana jumlah *segment* akan dibandingkan untuk pertama kali yaitu dengan *transaksi=99999* supaya nilai hitung *segment* selalu lebih kecil daripada *transaksi=99999*. Setelah dibandingkan dan jumlahnya lebih kecil maka nilai transaksi akan terupdate menjadi nilai lebih kecil dan nama *segment* mengikuti nama *segment* yang sedang dibandingkan.&nbsp;
+```
+printf ("\n\nTipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", nama_segment, transaksi)
+```
+Mencetak nilai dari *nama_segment* dan *transaksi* sesuai dengan format di atas.
+
+
 #### 2.d)
+*Praktikan* mampu mencari **Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit** dan **Total keuntungan wilayah tersebut** dimana setiap regionnya : Central, East, South, dan West.
+
+- Penginisialisasian terhadap setiap elemen kolom yang digunakan
+```bash
+ wilayah=$13
+ profit=$21
+```
+Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
+
+- Menghitung **Total Keuntungan** dari setiap wilayah
+```bash
+if(wilayah=="Central"){
+   jumlah[wilayah]+=profit
+}
+else if (wilayah=="East"){
+   jumlah[wilayah]+=profit
+}
+else if (wilayah=="South"){
+   jumlah[wilayah]+=profit
+}
+else if (wilayah=="West"){
+   jumlah[wilayah]+=profit
+}
+```
+Melakukan pengecekan pada kolom ke **$13** yang diinisialisasi dengan variabel *wilayah* dan kolom ke **$21** yang diinisialisasi dengan variabel *profit*. Lalu `awk` akan mengecek setiap baris di dalam file, disetiap menemukan salah satu dari *wilayah* maka nama dan *profit* dari *wilayah* akan dimasukkan kedalam array disetiap wilayahnya. Perhitungan akan dilakukan sampai setiap *wilayah* telah di cek dan *profit*nya akan dijumlahkan.&nbsp;
+
+- Mencari **Wilayah yang totalnya paling sedikit** dan **Jumlah transaksinya**
+```bash
+minimal_profit=99999
+for (x in jumlah){
+  if (jumlah[x]<minimal_profit){
+     minimal_profit=jumlah[x]
+     nama_wilayah=x
+  }
+}
+```
+Iterasi pada array untuk mencari jumlah *profit* yang paling sedikit. Dimana jumlah *profit* disetiap *wilayah* akan dibandingkan untuk pertama kali yaitu dengan *minimal_profit=99999* supaya nilai hitung jumlah *profit* selalu lebih kecil daripada *minimal_profit=99999*. Setelah dibandingkan dan jumlah *profit*nya lebih kecil maka nilai minimal_profitnya akan terupdate menjadi *profit* lebih kecil dan nama *wilayah* mengikuti nama *wilayah* yang sedang dibandingkan.&nbsp;
+```
+ printf ("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.2f.\n", nama_wilayah, minimal_profit)
+```
+Mencetak nilai dari *nama_wilayah* dan *minimal_profit* sesuai dengan format di atas.
+
+#### 2.e)
+
+
+
 
 ---
 
