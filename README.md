@@ -112,7 +112,7 @@ done | sort -nr -t, -k2 | sed '1i\Error,Count' > error_message.csv
 - Menggunakan cara yang sama dengan poin b yaitu melakukan `grep -o` pada `syslog.log` dan menggunakan *regex* `ERROR.*` untuk memfilter isinya.
 - Kemudian pada soal ini ditambahkan command `| sed 's/\<ERROR\>//g'` untuk menghilangkan kata ERROR dan mengambil sisa dari baris tersebut. 
 - Setelah itu, melakukan hal yang sama yaitu menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f1` dan command `uniq -c`
-- Kemudian, pada poin ini, program akan melakukan iterasi dengan command `| while read count msg` yang menyimpan nilai jumlah kemunculan pesan info dan kalimatnya ke dalam variabel 'count' dan 'msg'
+- Kemudian, pada poin ini, program akan melakukan iterasi dengan command `| while read count msg` yang menyimpan nilai jumlah kemunculan pesan info dan kalimatnya ke dalam variabel `'count'` dan `'msg'`
 - Melakukan echo dengan posisi `$msg,$count` agar disesuaikan dengan permintaan soal
 - Berikutnya, melakukan sorting sekali lagi menggunakan command `| sort -nr -t, -k2` yaitu melakukan sort secara *descending* dan memberitahu bahwa yang di sort adalah kolom kedua.
 - Terakhir, untuk memberikan header menggunakan command `| sed '1i\Error,Count' > error_message.csv` dan mengeluarkan outputnya pada file error_message.csv dan menimpa apapun yang ada disana dengan command `> error_message.csv`.&nbsp;
@@ -124,8 +124,27 @@ done | sort -nr -t, -k2 | sed '1i\Error,Count' > error_message.csv
 Menuliskan informasi pada poin **c** kedalam file user_statistic.csv dengan header 'Username, INFO, ERROR' diurutkan berdasarkan username secara *ascending*.&nbsp;
 
 #### Source Code :
+```bash
+echo "Username,INFO,ERROR" > user_statistic.csv
+
+cut -d "(" -f2 syslog.log | cut -d ")" -f1 | sort -t , -k1 | uniq |
+while read line;
+do
+        info=$(grep "INFO.*($line)" syslog.log | wc -l)
+        error=$(grep "ERROR.*($line)" syslog.log | wc -l)
+        echo -e "$line,$info,$error"
+done >> user_statistic.csv
+```
+- Menggunakan `echo "Username, INFO, ERROR"` sebagai header dari file yang akan mencetak output, `echo` akan berjalan ke user_statistic.csv lewat `> user_statistic.csv`.
+- Melakukan langkah yang sama dengan bagian **c** yaitu menggunakan command `| cut -d` yang berarti cut dengan delimiter `"(" -f2` dan sekali lagi menggunakan `| cut -d` namun dengan delimiter `")" -f1` untuk mengambil hanya nama dari penggunanya
+- Kemudian juga melakukan sort, namun yang disort adalah kolom 1 dengan command `| sort -t, -k1` yang berarti diurutkan berdasarkan kolom 1 dan dengan pemisah `,`. Setelah itu dilakukan pengelompokan yang menggunakan command `uniq`
+- Setelah itu melakukan iterasi dengan command `| while read line` yang menyimpan nama dari pengguna dalam variabel line
+- Menggunakan command `grep` untuk memfilter file `syslog.log` dengan regex `INFO.*($line)` dan `ERROR.*($line)` yang berarti mengambil baris yang berisi `(INFO)` dan `(ERROR)` dengan nama dari user yang sedang dibaca melalui iterasi. 
+- Setelah melakukan `grep`, juga digunakan command `wc -l` untuk menghitung banyaknya line sehingga mengetahui berapa banyak `(INFO)` dan `(ERROR)` dari seorang pengguna.
+- Langkah berikutnya adalah menggunakan command `echo -e "$line,$info,$error` untuk mencetak hasil sesuai urutan yang diminta oleh soal, kemudian mencetaknya kedalam user_statistic.csv melalui command `>> user_statistic.csv`, disini digunakan `>>` agar tidak menimpa `echo` pertama pada header.
 
 #### Output :
+![1e](./screenshots/soal1e.JPG)
 
 ### Soal 2
 #### 2.a)
