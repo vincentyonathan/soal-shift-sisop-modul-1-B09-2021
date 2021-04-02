@@ -77,7 +77,7 @@ echo "$uerroregex"
 - Menggunakan command `grep` untuk mengambil baris dari file `syslog.log`
 - Melakukan filter yaitu dengan menggunakan *regex* `INFO.*` dan `ERROR.*` yang bertujuan untuk mengambil baris dengan kata `(INFO)` dan `(ERROR)`
 - Menggunakan command `cut -d` yang berarti cut dengan delimiter `"(" -f2` yang berarti memotong sampai dengan sebelum `(nama-pengguna)` 
-- Sekali lagi menggunakan command `cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)`
+- Sekali lagi menggunakan command `cut -d` namun dengan delimiter `")" -f1` yang berarti memotong semua kalimat sampai dengan akhir setelah `(nama-pengguna)` agar yang tercetak hanya nama pengguna
 - Kemudian, melakukan `sort` untuk mengurutkan tiap baris dengan konten yang sama
 - Terakhir, menggunakan command `uniq -c` dimana `uniq` berarti mengelompokan dan `-c` yang berarti menghitung baris sehingga diketahui jumlah setiap error.&nbsp;
 Output :
