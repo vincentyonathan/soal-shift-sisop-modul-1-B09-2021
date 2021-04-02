@@ -179,7 +179,7 @@ END
 
 #### Source Code :
 - Penginisialisasian terhadap setiap elemen kolom yang digunakan
-```
+```bash
  rowID=$1
  profit=$21
  sales=$18
@@ -187,13 +187,13 @@ END
 Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
 
 - Menghitung `Profit Percentage`
-```
+```bash
 profit_percentage=(profit/(sales-profit))*100
 ```
 Untuk menghitung **Profit Percentage** sesuai dengan pendefinisian rumus awal, maka kita harus mendapatkan nilai profit yang ada di kolom data urutan **$21** dan sales di kolom urutan **$18**. Lalu untuk pencarian nilai **Cost Price** adalah dengan pengurangan Sales dikurangkan dengan profit. Kemudian hasil pembagian dari **Profit** dan **Cost Price** dikalikan dengan 100.&nbsp;
 
 - Mendapatkan nilai dari `Profit Percentage` terbesar
-```
+```bash
 if(profit_percentage>=maks){
    maks=profit_percentage
    maksID=rowID
@@ -201,7 +201,7 @@ if(profit_percentage>=maks){
 ```
 Untuk mencari nilai `Profit Percentage` terbesar adalah dengan membandingkan nilai `Profit Prcentage` disetiap barisnya dengan nilai `maks` dimana untuk awal perbandingan nilainya akan bernilai 0. Lalu jika disetiap perbandingan nilai `Profit Percentage` lebih besar daripada maks, maka maks akan terupdate dengan nilai yang baru. Lalu gunakan `maksID=rowID` untuk menyimpan ID yang terbesar.&nbsp;
 
-```
+```bash
 printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %d%%.\n", maksID, maks)
 ```
 Mencetak nilai dari *maksID* dan *maks* sesuai dengan format di atas.
@@ -212,7 +212,7 @@ Mencetak nilai dari *maksID* dan *maks* sesuai dengan format di atas.
 
 #### Source Code :
 - Penginisialisasian terhadap setiap elemen kolom yang digunakan
-```
+```bash
 year=$2
 city=$10
 name=$7
@@ -220,7 +220,7 @@ name=$7
 Pada penginisialisasian kolom disini menggunakan nama variabel baru sesuai dengan nama kolom dan urutan yang ada di *Laporan-TokoShiSop.tsv*.&nbsp;
 
 - Mendapatkan **Nama Customer** yang melakukan transaksi pada tahun **2017** dan di kota **Albuquerque**
-```
+```bash
 if(year~"2017" && city=="Albuquerque"){
    list[name]+=1
 }
