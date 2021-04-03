@@ -322,8 +322,11 @@ Iterasi pada array untuk mencari jumlah *profit* yang paling sedikit. Dimana jum
 Mencetak nilai dari *nama_wilayah* dan *minimal_profit* sesuai dengan format di atas.
 
 #### 2.e)
-Hasil dari kesimpulan dari data yang dicari di dalam **hasil.txt**.&nbsp;
-
+Untuk memanggil direktori dan hasilnya akan dipush kedalam file **hasil.txt** seperti dibawah ini :&nbsp;
+```bash
+Laporan-TokoShiSop.tsv > hasil.txt
+```
+Hasil dari kesimpulan dari data yang dicari di dalam file **hasil.txt**.&nbsp;
 #### Output :
 ![2](./screenshots/soal2.JPG)
 
