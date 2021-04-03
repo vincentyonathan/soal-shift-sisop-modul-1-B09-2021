@@ -149,6 +149,7 @@ done >> user_statistic.csv
 #### Output :
 ![1e](./screenshots/soal1e.JPG)
 
+[Daftar isi](#daftar-isi)
 ---
 
 ### Soal 2
@@ -330,6 +331,7 @@ Hasil dari kesimpulan dari data yang dicari di dalam file **hasil.txt**.&nbsp;
 #### Output :
 ![2](./screenshots/soal2.JPG)
 
+[Daftar isi](#daftar-isi)
 ---
 
 ### Soal 3
@@ -494,3 +496,5 @@ mv Foto.log $target
   
 
 #### 3.e)
+
+[Daftar isi](#daftar-isi)
