@@ -336,6 +336,14 @@ Hasil dari kesimpulan dari data yang dicari di dalam file **hasil.txt**.&nbsp;
 #### Output :
 ![2](./screenshots/soal2.JPG)
 
+#### Kendala dalam pengerjaan soal 2
+- **Nomor 2a** tidak muncul dalam output ketika di run dan hasil dari formulanya bernilai 0.
+- **Nomor 2b** tidak muncul juga dalam output ketika di run.
+- **Nomor 2c** tidak mengeluarkan hasil dari nama segment dan jumlahnya.
+- **Nomor 2d** tidak mengeluarkan hasil dari nama region dan total profitnya.
+- Tidak muncul ouput pada *nomor 2a* karena menggunakan macOS dan solusinya meminta bantuan kepada teman kelompok.
+
+
 [Daftar isi](#daftar-isi)
 ---
 
