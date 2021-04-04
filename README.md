@@ -509,8 +509,16 @@ mv Foto.log $target
 
 #### 3.d)
 
-  
+#### Output
+![3d](./screenshots/soal3d.JPG)
+
+#### Bukti Password
+![3d2](./screenshots/3dpw.JPG)
 
 #### 3.e)
 
 [Daftar isi](#daftar-isi)
+
+#### Kendala
+
+---
