@@ -504,6 +504,9 @@ mv Foto.log $target
 - `today` diproses dengan mod 2, jika hasilnya 0 maka `Kitten` dijadikan **true**. Jika hasil dari `today` tidak 0, maka `kitten` menjadi **False**
 - Proses dari pengambilan gambar sama seperti 3a, hanya link dan proses pemilihan link menyesuaikan hasil dari `today`.
 
+#### Output 
+![3c](./screenshots/soal3c.JPG)
+
 #### 3.d)
 
   
