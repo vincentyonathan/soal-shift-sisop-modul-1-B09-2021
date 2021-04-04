@@ -541,12 +541,13 @@ done
 - Setiap pukul 7 pada hari senin sampai jumat, code akan menjalankan file `soal3d.sh`
 - Setiap pukul 18 pada hari senin sampai jumat, code akan mengunzip Koleksi.zip
 - Setelah isi Koleksi.zip di keluarkan, Koleksi.zip dihapus
-[Daftar isi](#daftar-isi)
 
 #### Kendala
 - `Crontab` pada 3e yang terkadang tidak berjalan mungkin dikarenakan masalah pada komputer. Namun ketika dicek status dari `cron` tersebut, `cron` tersebut aktif
 ![3e](./screenshots/crontab3e.JPG)
 - Kesulitan mencari cara melakukan unzipping dengan password pada `crontab`
-- Belum terbiasa memakai `crontab`
+- Belum terbiasa memakai `crontab`.&nbsp;
+
+[Daftar isi](#daftar-isi)
 
 ---
