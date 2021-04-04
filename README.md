@@ -508,7 +508,20 @@ mv Foto.log $target
 ![3c](./screenshots/soal3c.JPG)
 
 #### 3.d)
+*Praktikan* diminta untuk membuat script yang akan **memindahkan seluruh folder ke zip** yang diberi nama “Koleksi.zip” dan **mengunci** zip tersebut dengan **password** berupa tanggal saat ini dengan format *"MMDDYYYY"*
+#### Source Code :
+```bash
+#!/usr/bin/bash
+cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3
+target="$(date +%m)$(date +%d)$(date +%Y)"
 
+for  foldername  in K*; do
+zip --password $target -ur Koleksi.zip "$foldername"
+rm -rf $foldername
+done
+```
+- `target` disesuaikan dengan tanggal hari ini
+- Zip dibuat dengan password yang sesuai dengan `target` lalu diberi nama Koleksi.zip lalu folder yang lama dihapus
 #### Output
 ![3d](./screenshots/soal3d.JPG)
 
@@ -516,7 +529,18 @@ mv Foto.log $target
 ![3d2](./screenshots/3dpw.JPG)
 
 #### 3.e)
+*Praktikan* diminta untuk membuat koleksinya **ter-zip** saat kuliah saja, selain dari waktu yang disebutkan, ia ingin koleksinya **ter-unzip** dan **tidak ada file zip** sama sekali.
+#### Source Code :
+```bash
+#zipping
+00 7 * * 1-5  /bin/bash /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/soal3d.sh
 
+#unzipping
+00 18 * * 1-5  cd /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3 && unzip -P $(date +%m%d%Y) /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip && rm -rf /home/prk/soal-shift-sisop-modul-1-B09-2021-main/soal3/Koleksi.zip
+```
+- Setiap pukul 7 pada hari senin sampai jumat, code akan menjalankan file `soal3d.sh`
+- Setiap pukul 18 pada hari senin sampai jumat, code akan mengunzip Koleksi.zip
+- Setelah isi Koleksi.zip di keluarkan, Koleksi.zip dihapus
 [Daftar isi](#daftar-isi)
 
 #### Kendala
